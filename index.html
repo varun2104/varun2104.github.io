@@ -1,0 +1,113 @@
+<html>
+<head>
+
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div id="login-section" class="hidden">
+        <h1>Login</h1>
+        <form onsubmit="return login">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="showRegistration()">Register here</a></p>
+    </div>
+
+
+	<div id="registration-section" class="hidden">
+        <h1>Register</h1>
+
+        <form onsubmit="return register()">
+            <input type="text" id="regUsername" placeholder="Username" required><br>
+            <input type="password" id="regPassword" placeholder="Password" required><br>
+            <input type="date" id="regDate" placeholder="Date" required><br>
+            <input type="email" id="regEmail" placeholder="email" required><br>
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+    </div>
+	<div id="main-section" class="hidden">
+        <h1>Shopping Cart</h1>
+
+	<div class="products">
+        <div class="product">
+            <h2>Apple</h2>
+            <p>Price: $10</p>
+            <img src="C:\Users\sushr\OneDrive\Desktop\Shopping Cart\apple.png">
+            <button class="add-to-cart" onclick="addToCart('Apple', 10)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <h2>Banana</h2>
+            <p>Price: $10</p>
+            <img src="C:\Users\sushr\OneDrive\Desktop\Shopping Cart\banana.png">
+            <button class="add-to-cart" onclick="addToCart('Banana', 10)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <h2>Orange</h2>
+            <p>Price: $10</p>
+            <img src="C:\Users\sushr\OneDrive\Desktop\Shopping Cart\orange.png">
+            <button class="add-to-cart" onclick="addToCart('Orange', 10)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <h2>Mango</h2>
+            <p>Price: $20</p>
+            <img src="C:\Users\sushr\OneDrive\Desktop\Shopping Cart\mango.png">
+            <button class="add-to-cart" onclick="addToCart('mango', 20)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <h2>Guava</h2>
+            <p>Price: $10</p>
+            <img src="C:\Users\sushr\OneDrive\Desktop\Shopping Cart\guava.png">
+            <button class="add-to-cart" onclick="addToCart('Guava', 10)">Add to Cart</button>
+        </div>
+    	</div>
+
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: $<span id="total">0</span></p>
+            <button onclick="checksout()">Checkout</button>
+        </div>
+    </div>
+
+<script>let cartItems = [];
+
+    function addToCart(product, price) {
+        cartItems.push({product, price});
+        updateCart();
+    }
+    
+    function updateCart() {
+        let cartList = document.getElementById("cart-items");
+        let totalElement = document.getElementById("total");
+        let total = 0;
+    
+        cartList.innerHTML = "";
+        cartItems.forEach(item => {
+            let listItem = document.createElement("li");
+            listItem.innerText = `${item.product} - $${item.price}`;
+            cartList.appendChild(listItem);
+            total += item.price;
+        });
+    
+        totalElement.innerText = total;
+    }
+    
+    
+    
+    
+    // Add product and cart logic similar to the previous example
+    
+    function checksout() {
+        alert('Thank you for your purchase!');
+    }
+    </script> 
+
+</body>
+</html>
